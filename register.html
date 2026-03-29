@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Taxgini</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 500px;
+            padding: 3rem;
+        }
+        .type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .type-option {
+            position: relative;
+            cursor: pointer;
+        }
+        .type-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .type-label {
+            display: block;
+            padding: 1.25rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255,255,255,0.02);
+        }
+        .type-option input:checked + .type-label {
+            border-color: var(--secondary);
+            background: rgba(255, 193, 7, 0.08);
+            box-shadow: 0 8px 24px rgba(255, 193, 7, 0.15);
+        }
+        .type-option input:checked + .type-label i {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+        .type-label i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .type-label span {
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Success Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .popup-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .popup-overlay.active .popup-card {
+            transform: scale(1);
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 30px rgba(0, 200, 83, 0.3);
+        }
+        .warning-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <div class="auth-container">
+        <div class="glass auth-card fade-in">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+
+            <div class="logo" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; justify-content: center;">
+                <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); font-weight: 800; font-size: 1.5rem;">T</div>
+                <span style="font-size: 1.75rem; font-weight: 700; letter-spacing: -1px;">Taxgini<span style="color: var(--secondary);">.</span></span>
+            </div>
+
+            <h3 style="margin-bottom: 1.5rem; text-align: center;">Create Account</h3>
+
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Register as</label>
+                    <div class="type-selector">
+                        <label class="type-option">
+                            <input type="radio" name="userRole" value="client" checked>
+                            <div class="type-label">
+                                <i class="fas fa-user-tie"></i>
+                                <span>Client</span>
+                            </div>
+                        </label>
+                        <label class="type-option">
+                            <input type="radio" name="userRole" value="ca">
+                            <div class="type-label">
+                                <i class="fas fa-certificate"></i>
+                                <span>CA / Expert</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" class="input" id="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" class="input" id="phone" placeholder="+91 98765 43210" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" class="input" id="email" placeholder="email@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" class="input" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="input-group" id="licenseGroup" style="display: none;">
+                    <label>License / Registration Number</label>
+                    <input type="text" class="input" id="licenseNo" placeholder="ICA-XXXXXX">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register Now</button>
+            </form>
+
+            <p style="margin-top: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+                Already have an account? <a href="login.html" style="color: var(--secondary); text-decoration: none; font-weight: 600;">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-card">
+            <div class="success-icon slide-up">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 style="margin-bottom: 1rem;">Welcome to Taxgini!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Your account has been successfully created. Please login to access your dashboard.</p>
+            <a href="login.html" class="btn btn-primary" style="width: 100%;">Proceed to Login</a>
+        </div>
+    </div>
+
+    <!-- Already Exists Popup -->
+    <div class="popup-overlay" id="existsPopup">
+        <div class="popup-card">
+            <div class="warning-icon slide-up">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 style="margin-bottom: 1rem;">Email Already Registered</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">An account with this email already exists. Please login with your credentials to continue.</p>
+            <div style="display: flex; gap: 1rem;">
+                <button onclick="document.getElementById('existsPopup').classList.remove('active')" class="btn btn-outline" style="flex: 1;">Close</button>
+                <a href="login.html" class="btn btn-primary" style="flex: 1;">Login Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import Taxgini from './js/function.js';
+        import Storage from './js/storage.js';
+        
+        let userType = 'client';
+        const roleInputs = document.querySelectorAll('input[name="userRole"]');
+        const registerForm = document.getElementById('registerForm');
+        const licenseGroup = document.getElementById('licenseGroup');
+        const licenseInput = document.getElementById('licenseNo');
+
+        // Handle URL params for type selection
+        const urlParams = new URLSearchParams(window.location.search);
+        const forcedType = urlParams.get('type');
+
+        const updateUIForRole = (role) => {
+            userType = role;
+            if (role === 'ca') {
+                licenseGroup.style.display = 'block';
+                licenseInput.required = true;
+            } else {
+                licenseGroup.style.display = 'none';
+                licenseInput.required = false;
+            }
+        };
+
+        roleInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                updateUIForRole(e.target.value);
+            });
+            // Initial state check
+            if (input.checked) updateUIForRole(input.value);
+        });
+
+        if (forcedType) {
+            roleInputs.forEach(input => {
+                if (input.value === forcedType) {
+                    input.checked = true;
+                    updateUIForRole(forcedType);
+                }
+            });
+        }
+
+        registerForm.onsubmit = (e) => {
+            e.preventDefault();
+            const userData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                type: userType,
+                licenseNo: userType === 'ca' ? document.getElementById('licenseNo').value : null
+            };
+
+            const res = Storage.register(userData);
+            if (res.success) {
+                const popup = document.getElementById('successPopup');
+                popup.classList.add('active');
+            } else {
+                if (res.message.includes('already exists')) {
+                    document.getElementById('existsPopup').classList.add('active');
+                } else {
+                    Taxgini.notify(res.message, 'error');
+                }
+            }
+        };
+
+        // Redirect if already logged in
+        if (Storage.getCurrentUser()) {
+            const user = Storage.getCurrentUser();
+            window.location.href = user.type === 'ca' ? 'ca-dashboard.html' : 'client-dashboard.html';
+        }
+    </script>
+</body>
+</html>

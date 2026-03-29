@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Taxgini</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .error-card {
+            max-width: 600px;
+            padding: 4rem;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--success) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header"></header>
+
+    <div class="error-container">
+        <div class="glass error-card fade-in">
+            <div class="error-code">404</div>
+            <h1 style="margin-bottom: 1.5rem;">Lost?</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem; line-height: 1.6;">The page you are looking for doesn't exist or has been moved. Don't worry, our tax experts can help you find your way back.</p>
+            
+            <div style="display: flex; gap: 1.5rem; justify-content: center;">
+                <a href="index.html" class="btn btn-primary btn-lg"><i class="fas fa-home"></i> Back to Home</a>
+                <a href="services.html" class="btn btn-outline btn-lg">Explore Services</a>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <script type="module">
+        import Taxgini from './js/function.js';
+        // Global UI initialized via shared module
+    </script>
+</body>
+</html>

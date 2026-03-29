@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA Marketplace | Leads Taxgini</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .filter-bar {
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 1rem;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .filter-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+        .leads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <header id="main-header"></header>
+
+    <div class="dash-layout container">
+        <aside class="sidebar glass">
+            <div style="margin-bottom: 3rem;">
+                <div style="color: var(--secondary); font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.5rem;">DASHBOARD</div>
+                <h3 style="font-size: 1.25rem;">Marketplace</h3>
+            </div>
+            
+            <nav style="display: flex; flex-direction: column; gap: 1rem;">
+                <a href="ca-dashboard.html" class="nav-item glass-pill" style="display: flex; align-items: center; text-decoration: none;"><i class="fas fa-home" style="margin-right: 0.75rem;"></i> Overview</a>
+                <a href="Leads.html" class="nav-item active glass-pill" style="display: flex; align-items: center; text-decoration: none;"><i class="fas fa-store" style="margin-right: 0.75rem;"></i> Browse Leads</a>
+                <a href="wallet.html" class="nav-item glass-pill" style="display: flex; align-items: center; text-decoration: none;"><i class="fas fa-wallet" style="margin-right: 0.75rem;"></i> My Wallet</a>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                <a href="https://wa.me/918051648462" class="btn btn-outline" style="width: 100%; border-color: var(--secondary); color: var(--secondary); margin-bottom: 1.5rem; font-size: 0.85rem; justify-content: flex-start;">
+                    <i class="fas fa-headset" style="margin-right: 0.5rem;"></i> Live Support
+                </a>
+                
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shield-alt" style="color: var(--success);"></i> ISO 27001 Certified
+                    </div>
+                </div>
+
+                <button id="logoutBtn" class="nav-item" style="color: #ef4444; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left; display: flex; align-items: center; padding: 0.5rem 0;">
+                    <i class="fas fa-sign-out-alt" style="margin-right: 0.75rem;"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 3rem;">
+                <h1 class="title-gradient" style="margin-bottom: 0.5rem;">Marketplace</h1>
+                <p style="color: var(--text-secondary);">Browse verified client requests and bid on premium tax leads.</p>
+            </header>
+
+            <!-- Filters -->
+            <div class="glass" style="padding: clamp(1rem, 5vw, 2rem); margin-bottom: 3rem; border-radius: 1.5rem;">
+                <div class="filter-bar" style="display: grid; grid-template-columns: 1fr auto auto; gap: 1.5rem; align-items: center;">
+                    <div style="position: relative;">
+                        <i class="fas fa-search" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--secondary); opacity: 0.7;"></i>
+                        <input type="text" id="searchLeads" class="input glass-pill" style="padding-left: 3rem; width: 100%; border-radius: 1rem; background: rgba(255,255,255,0.03);" placeholder="Search leads by keywords, services...">
+                    </div>
+                    <select id="filterCategory" class="input glass-pill">
+                        <option value="all">All Categories</option>
+                        <option value="GST Filing">GST Filing</option>
+                        <option value="Income Tax Return">Income Tax Return</option>
+                        <option value="Audit & Compliance">Audit & Compliance</option>
+                        <option value="Company Registration">Company Registration</option>
+                    </select>
+                    <button class="btn btn-primary" id="refreshBtn" style="border-radius: 1rem; padding: 0.75rem 2rem;"><i class="fas fa-sync-alt" style="margin-right: 0.5rem;"></i> Refresh</button>
+                </div>
+            </div>
+
+            <!-- Leads View -->
+            <div class="leads-grid" id="marketLeads">
+                <!-- Leads rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <!-- Global functions & Storage -->
+    <script type="module">
+        import Storage from './js/storage.js';
+        import Taxgini from './js/function.js';
+        import LeadsVault from './js/leadsvault.js';
+
+        // Security check
+        const user = Taxgini.checkSession();
+        if (!user || user.type !== 'ca') {
+            window.location.href = 'login.html';
+        }
+
+        // Initialize UI
+        document.getElementById('walletSide').textContent = `₹${user.wallet.toLocaleString()}`;
+        
+        const renderLeads = () => {
+            const filters = {
+                search: document.getElementById('searchLeads').value,
+                category: document.getElementById('filterCategory').value
+            };
+            LeadsVault.renderMarketplace('marketLeads', filters);
+        };
+
+        // Event listeners
+        document.getElementById('searchLeads').addEventListener('input', renderLeads);
+        document.getElementById('filterCategory').addEventListener('change', renderLeads);
+        document.getElementById('refreshBtn').addEventListener('click', renderLeads);
+        document.getElementById('logoutBtn').onclick = () => Taxgini.logout();
+
+        // Initial render
+        renderLeads();
+    </script>
+</body>
+</html>

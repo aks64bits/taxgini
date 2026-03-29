@@ -1,0 +1,168 @@
+/**
+ * Taxgini Smart Device Optimization (Optimize.css)
+ * Isolates all device-specific logic and fluid scaling.
+ */
+
+:root {
+    --header-height: clamp(60px, 10vw, 80px);
+}
+
+/* Visibility Orchestration */
+.show-mobile { display: none !important; }
+.hide-mobile { display: block !important; }
+
+@media (max-width: 1024px) {
+    .show-mobile { display: block !important; }
+    .hide-mobile { display: none !important; }
+}
+
+/* --- THE STICKY FIX --- */
+/* Mobile Overlay & Drawer Foundation */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.98); /* Near-solid to block content */
+    backdrop-filter: blur(20px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-dark);
+    z-index: 9999;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.mobile-drawer.active {
+    right: 0;
+}
+
+.nav-item-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.75rem, 8vw, 3rem);
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-item-fullscreen:hover {
+    color: var(--secondary);
+    transform: scale(1.05);
+}
+
+/* Explicitly hide mobile navigation components on Desktop screens */
+@media (min-width: 1025px) {
+    .mobile-drawer, .mobile-overlay, #mobileNavOverlay, #mobileNavDrawer {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
+
+/* Explicitly hide mobile navigation components on Desktop screens */
+@media (min-width: 1025px) {
+    .mobile-drawer, .mobile-overlay, #mobileNavOverlay, #mobileNavDrawer {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
+
+/* Fluid Typography Suite */
+h1 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 1.1;
+}
+
+body.device-mobile h1 {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+}
+
+/* Header Correction */
+.main-header-content {
+    min-height: var(--header-height);
+}
+
+/* Smart Footer Columns */
+.global-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+}
+
+/* Smart Footer Columns (Integrated Arrangement) */
+.global-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    transition: all 0.4s ease;
+}
+
+body.device-tablet .global-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+body.device-mobile .global-footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3.5rem;
+}
+
+body.device-mobile .footer-list,
+body.device-mobile .footer-brand,
+body.device-mobile .footer-social-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body.device-mobile .social-icons {
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+body.device-mobile .footer-links-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Touch Target Optimization */
+body.has-touch .btn, 
+body.has-touch .nav-item,
+body.has-touch .header-nav-link {
+    min-height: 48px; /* High-precision touch targets */
+    padding: 0.75rem 1.25rem;
+}
+
+/* Space Optimization */
+.container {
+    padding: 0 clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Section Spacing */
+section {
+    padding: clamp(3rem, 10vw, 6rem) 0;
+}

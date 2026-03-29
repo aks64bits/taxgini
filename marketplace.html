@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Marketplace | Taxgini</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .stats-hero {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        @media (max-width: 768px) {
+            .stats-hero {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <header id="main-header"></header>
+
+    <main class="container">
+        <section style="padding: 4rem 0; text-align: center;" class="fade-in">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">The <span class="title-gradient">Leads.</span></h1>
+            <p style="max-width: 700px; margin: 0 auto; color: var(--text-secondary);">Connecting certified tax professionals with local business opportunities across India. No more cold calling—get notified when a lead matches your expertise.</p>
+        </section>
+
+        <!-- Dynamic Stats (Demo) -->
+        <div class="stats-hero">
+            <div class="glass" style="padding: 2rem; border-top: 4px solid var(--secondary);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--secondary);">1,200+</div>
+                <div style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Live Leads Today</div>
+            </div>
+            <div class="glass" style="padding: 2rem; border-top: 4px solid var(--success);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--success);">₹2.5Cr</div>
+                <div style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Unlocked Last Month</div>
+            </div>
+            <div class="glass" style="padding: 2rem; border-top: 4px solid #8b5cf6;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #8b5cf6;">500+</div>
+                <div style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Verified Experts</div>
+            </div>
+            <div class="glass" style="padding: 2rem; border-top: 4px solid #ec4899;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #ec4899;">98%</div>
+                <div style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Conversion Accuracy</div>
+            </div>
+        </div>
+
+        <!-- Live Opportunities Section -->
+        <section style="margin: 5rem 0;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem;">
+                <div>
+                    <h2 class="title-gradient">Live Opportunities</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">Verified service requests from clients across India.</p>
+                </div>
+                <a href="Leads.html" class="btn btn-outline btn-sm">View All 1,200+ Leads <i class="fas fa-chevron-right" style="margin-left: 0.5rem; font-size: 0.8rem;"></i></a>
+            </div>
+            
+            <div class="stats-hero" id="liveLeadsContainer" style="margin-top: 0; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                <!-- Leads will be injected here -->
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section style="margin: 5rem 0;">
+            <div class="glass" style="padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h2>How Leads Works</h2>
+                    <p style="color: var(--text-secondary); margin: 2rem 0; line-height: 1.8;">We've built a secure, transparent marketplace where clients post their tax requirements and professionals browse verified opportunities.</p>
+                    
+                    <ul style="list-style: none; display: grid; gap: 1.5rem;">
+                        <li style="display: flex; gap: 1rem;">
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 1.25rem;"></i>
+                            <div><strong>Direct Engagement:</strong> Select leads that fit your area of expertise.</div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 1.25rem;"></i>
+                            <div><strong>Verified Contacts:</strong> Every lead contains valid email and phone details.</div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 1.25rem;"></i>
+                            <div><strong>Fair Pricing:</strong> Uniform lead unlocking cost based on category.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="position: relative;">
+                    <div class="glass" style="padding: 2rem; border: 1px solid var(--secondary);">
+                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                             <span style="font-weight: 700;">NEW LEAD ARRIVED</span>
+                             <span style="font-size: 0.8rem; color: var(--secondary);">JUST NOW</span>
+                         </div>
+                         <h4 style="margin-bottom: 0.5rem;">Audit of Private Limited Co</h4>
+                         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Looking for a professional auditor to handle our year-end statutory compliance for a digital startup.</p>
+                         <div style="display: flex; justify-content: space-between; align-items: center;">
+                             <span style="font-weight: 600;">Budget: ₹30,000+</span>
+                             <a href="register.html?type=ca" class="btn btn-primary btn-sm">Unlock Details</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="text-align: center; padding: 5rem 0;">
+            <h2 style="margin-bottom: 1.5rem;">Join India's fastest growing tax advisory network.</h2>
+            <div style="display: flex; gap: 1.5rem; justify-content: center;">
+                <a href="register.html?type=ca" class="btn btn-primary btn-lg">Register as CA</a>
+                <a href="Leads.html" class="btn btn-outline btn-lg">Browse Latest Leads</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script type="module">
+        import Taxgini from './js/function.js';
+        import Storage from './js/storage.js';
+
+        // Render Top 4 leads for demo
+        const liveLeadsContainer = document.getElementById('liveLeadsContainer');
+        const leads = Storage.getAvailableLeads().slice(0, 4);
+
+        if (liveLeadsContainer && leads.length > 0) {
+            liveLeadsContainer.innerHTML = leads.map(lead => `
+                <div class="glass fade-in" style="padding: 1.5rem; text-align: left; position: relative; border-left: 4px solid var(--secondary);">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; text-transform: uppercase;">${lead.category}</div>
+                    <h4 style="margin-bottom: 0.75rem; font-size: 1rem; line-height: 1.4;">${lead.serviceType}</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${lead.description}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                        <span style="font-weight: 600; font-size: 0.85rem;">Value: ${lead.budget.split(' ')[0]}</span>
+                        <a href="register.html?type=ca" style="font-size: 0.85rem; color: var(--secondary); text-decoration: none; font-weight: 600;">Unlock <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

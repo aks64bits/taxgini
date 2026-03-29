@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Taxgini</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <header id="main-header"></header>
+    <div class="dash-layout container">
+        <aside class="sidebar glass">
+            <nav style="display: flex; flex-direction: column; gap: 1rem;">
+                <a href="#" class="nav-item active glass-pill"><i class="fas fa-home" style="margin-right: 0.75rem;"></i> Dashboard</a>
+                <a href="#" class="nav-item glass-pill"><i class="fas fa-plus-circle" style="margin-right: 0.75rem;"></i> Post Request</a>
+                <a href="#" class="nav-item glass-pill"><i class="fas fa-history" style="margin-right: 0.75rem;"></i> My Requests</a>
+                <a href="#" class="nav-item glass-pill"><i class="fas fa-cog" style="margin-right: 0.75rem;"></i> Settings</a>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                <a href="https://wa.me/918051648462" class="btn btn-outline" style="width: 100%; border-color: var(--secondary); color: var(--secondary); margin-bottom: 1.5rem; font-size: 0.85rem; justify-content: flex-start;">
+                    <i class="fas fa-headset" style="margin-right: 0.5rem;"></i> Live Support
+                </a>
+                
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shield-alt" style="color: var(--success);"></i> ISO 27001 Certified
+                    </div>
+                </div>
+
+                <button id="logoutBtn" class="nav-item" style="color: #ef4444; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left; display: flex; align-items: center; padding: 0.5rem 0;">
+                    <i class="fas fa-sign-out-alt" style="margin-right: 0.75rem;"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem;">
+                <div>
+                    <h2 class="title-gradient" id="welcomeUser">Welcome, Client</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Manage your tax requirements effortlessly.</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="glass hide-mobile" style="padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">Premium Member</div>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="glass stat-card" style="border-left: 4px solid var(--secondary);">
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">Active Requests</div>
+                    <div class="value" id="activeCount">0</div>
+                    <div style="color: var(--success); font-size: 0.75rem;">+1 this week</div>
+                </div>
+                <div class="glass stat-card" style="border-left: 4px solid var(--success);">
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">Completed Service</div>
+                    <div class="value">0</div>
+                    <div style="color: var(--text-secondary); font-size: 0.75rem;">Join Premium to get more</div>
+                </div>
+                <div class="glass stat-card" style="border-left: 4px solid var(--primary-light);">
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">Verified CA Matches</div>
+                    <div class="value">12+</div>
+                    <div style="color: var(--secondary); font-size: 0.75rem;">Top rated professionals</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; align-items: start;">
+                <!-- Post Request Form -->
+                <div>
+                    <h3 style="margin-bottom: 1.5rem;">Post New Service Request</h3>
+                    <form id="requestForm" class="glass" style="padding: 2.5rem;">
+                        <div class="input-group">
+                            <label>Service Type</label>
+                            <select class="input" id="serviceType" required>
+                                <option value="GST Filing">GST Filing</option>
+                                <option value="Income Tax Return">Income Tax Return</option>
+                                <option value="Audit & Compliance">Audit & Compliance</option>
+                                <option value="Company Registration">Company Registration</option>
+                                <option value="Other Financial Advice">Other Financial Advice</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Your Name</label>
+                            <input type="text" class="input" id="clientName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Contact Email</label>
+                            <input type="email" class="input" id="clientEmail" placeholder="email@example.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Phone Number</label>
+                            <input type="tel" class="input" id="clientPhone" placeholder="+91 00000 00000" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Estimated Budget / Service Value</label>
+                            <select class="input" id="budgetRange" required>
+                                <option value="₹1,000 - ₹5,000">₹1,000 - ₹5,000</option>
+                                <option value="₹5,000 - ₹15,000">₹5,000 - ₹15,000</option>
+                                <option value="₹15,000 - ₹50,000">₹15,000 - ₹50,000</option>
+                                <option value="₹50,000+">₹50,000+</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Description of Requirement</label>
+                            <textarea class="input" id="description" rows="4" placeholder="Briefly describe your tax needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.25rem;">Post Lead</button>
+                    </form>
+                </div>
+
+                <!-- My Recent Requests -->
+                <div>
+                    <h3 style="margin-bottom: 1.5rem;">My Lead History</h3>
+                    <div class="lead-grid" id="leadHistory">
+                        <!-- Leads injected here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <script type="module">
+        import Storage from './js/storage.js';
+        import Taxgini from './js/function.js';
+        import LeadsVault from './js/leadsvault.js';
+
+        const user = Taxgini.checkSession();
+        if (!user || user.type !== 'client') {
+            window.location.href = 'login.html';
+        }
+
+        // Initialize UI with user data
+        document.getElementById('welcomeUser').textContent = `Welcome, ${user.name}`;
+        document.getElementById('profileImg').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=fbc02d&color=1a237e`;
+        document.getElementById('clientName').value = user.name || '';
+        document.getElementById('clientEmail').value = user.email || '';
+        document.getElementById('clientPhone').value = user.phone || '';
+
+        document.getElementById('logoutBtn').onclick = () => Taxgini.logout();
+
+        const form = document.getElementById('requestForm');
+        const historyContainer = document.getElementById('leadHistory');
+        const activeCountElem = document.getElementById('activeCount');
+
+        function updateUI() {
+            const allLeads = Storage.getAllLeads();
+            // Show only leads belonging to this client
+            const myLeads = allLeads.filter(l => l.clientEmail === user.email);
+            
+            activeCountElem.textContent = myLeads.filter(l => l.status === 'available').length;
+            
+            historyContainer.innerHTML = myLeads.map(lead => `
+                <div class="glass lead-card fade-in">
+                    <div class="lead-info">
+                        <h4>${lead.serviceType}</h4>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">ID: ${lead.id} | ${new Date(lead.createdAt).toLocaleDateString()}</div>
+                        <span class="lead-badge" style="background: ${lead.status === 'available' ? 'rgba(255,193,7,0.1)' : 'rgba(0,200,83,0.1)'}; color: ${lead.status === 'available' ? 'var(--secondary)' : 'var(--success)'};">
+                            ${lead.status === 'available' ? 'In Review (Visible to CAs)' : 'Lead Purchased by CA'}
+                        </span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: 600; font-size: 0.9rem;">Status</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">${lead.status.toUpperCase()}</div>
+                    </div>
+                </div>
+            `).join('') || '<div class="glass" style="padding: 2rem; text-align: center; color: var(--text-secondary);">No requests posted yet.</div>';
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                clientName: document.getElementById('clientName').value,
+                clientEmail: document.getElementById('clientEmail').value,
+                clientPhone: document.getElementById('clientPhone').value,
+                serviceType: document.getElementById('serviceType').value,
+                description: document.getElementById('description').value,
+                budget: document.getElementById('budgetRange').value
+            };
+
+            const result = LeadsVault.postLead(formData);
+            if (result.success) {
+                Taxgini.notify('Your request has been successfully posted! CAs will contact you soon.', 'success');
+                setTimeout(() => location.reload(), 2000);
+            } else {
+                Taxgini.notify(result.message, 'error');
+            }
+        });
+
+        // Initial update
+        updateUI();
+    </script>
+</body>
+</html>

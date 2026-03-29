@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxgini | Premium Tax Advisory & Lead Marketplace</title>
+    <meta name="description" content="Taxgini connects certified accountants with clients for seamless tax advisory and compliance services.">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/optimize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <header id="main-header"></header>
+
+    <!-- Hero Section -->
+    <main class="container">
+        <section class="hero fade-in">
+            <h1>Simplify Your Taxes, <br><span class="title-gradient">Amplify Your Growth.</span></h1>
+            <p>The premium ecosystem where certified accountants find high-quality leads and clients find trusted financial expertise.</p>
+            
+            <div class="cta-grid">
+                <!-- Client CTA -->
+                <a href="register.html?type=client" class="glass cta-card client" id="heroClientLink" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                    <h3>I am a Client</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.95rem;">Looking for a professional CA to handle my taxes, GST filings, or audits.</p>
+                    <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--secondary);">
+                        Register Client Account <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- CA CTA -->
+                <a href="register.html?type=ca" class="glass cta-card ca" id="heroCaLink" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-certificate" style="font-size: 2.5rem; color: var(--success); margin-bottom: 1.5rem;"></i>
+                    <h3>I am a CA</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.95rem;">Certified professional ready to provide expert advice and unlock premium leads.</p>
+                    <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--success);">
+                        Register as Accountant <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features-grid">
+            <div class="glass" style="padding: 2.5rem; border-top: 4px solid var(--secondary);">
+                <i class="fas fa-vault" style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                <h4 style="font-size: 1.25rem;">Secure Leads</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.75rem;">Our proprietary lead management system ensures data privacy and high conversion rates.</p>
+            </div>
+            <div class="glass" style="padding: 2.5rem; border-top: 4px solid var(--success);">
+                <i class="fas fa-bolt" style="font-size: 1.5rem; color: var(--success); margin-bottom: 1.5rem;"></i>
+                <h4 style="font-size: 1.25rem;">Instant Connection</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.75rem;">Clients get responses within 24 hours from verified certified professionals.</p>
+            </div>
+            <div class="glass" style="padding: 2.5rem; border-top: 4px solid var(--primary-light);">
+                <i class="fas fa-chart-line" style="font-size: 1.5rem; color: var(--primary-light); margin-bottom: 1.5rem;"></i>
+                <h4 style="font-size: 1.25rem;">Premium Standards</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.75rem;">We only onboard certified professionals to maintain the highest advisory standards.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script type="module">
+        import Taxgini from './js/function.js';
+        const user = Taxgini.checkSession();
+        if (user) {
+            const dashboardUrl = user.type === 'ca' ? 'ca-dashboard.html' : 'client-dashboard.html';
+            document.getElementById('heroClientLink').href = dashboardUrl;
+            document.getElementById('heroCaLink').href = dashboardUrl;
+        }
+    </script>
+</body>
+</html>
